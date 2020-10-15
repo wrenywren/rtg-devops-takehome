@@ -6,7 +6,7 @@ This project is setup to allow devops candidates so show their skills and abilit
 - Fork the repository into your own account
 - Build and deploy the gatsby site to the cloud
 - Use Terraform to standup your cloud infrastructure
-- Use github actions to deploy infrastructure change and publish the site
+- Use github actions to deploy infrastructure changes and publish the site
 
 ## Things to remember
 - Make use of free tier services to deploy the site
