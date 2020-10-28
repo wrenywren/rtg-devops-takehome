@@ -20,7 +20,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment         = "My website's CloudFront distribution"
 
   default_cache_behavior {
-    path_pattern     = "/content/*"
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     compress         = true
