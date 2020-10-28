@@ -1,6 +1,8 @@
 locals {
   s3_origin_id = "myS3Origin"
   cloudfront_ttl = 31536000
+  primary_domain_name   = "www.rtg-takehome.com"
+  alternate_domain_name = "rtg-takehome.com"
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
