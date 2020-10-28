@@ -1,0 +1,44 @@
+## I've configted this actions file to only deploy to the
+# master branch
+on:
+  push:
+    branches:
+      - master
+name: Build RoomsToGo Gatsby Site
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Here are the AWS secrets that we just added to
+    # our github repo 
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: yarn
+    - name: Build Site
+      run: yarn build
+    # Here we run terraform init
+    - name: 'Terraform Init'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.13
+        tf_actions_subcommand: 'init'
+    # Here we run terraform plan
+    - name: 'Terraform Plan'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.13
+        tf_actions_subcommand: 'plan'
+    # And terraform apply to configure our s3 resources
+    - name: 'Terraform Apply'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.13
+        tf_actions_subcommand: 'apply'
+    # Here we upload our build to our public s3 bucket
+    - uses: chrislennon/action-aws-cli@v1.1
+    - name: sync to s3
+      run: aws s3 sync public s3://rtg-takehome.com
