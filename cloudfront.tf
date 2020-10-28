@@ -11,7 +11,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1.2"]
     }
-    domain_name = aws_s3_bucket.my_bucket.website_endpoint
+    domain_name = aws_s3_bucket.b.website_endpoint
     origin_id   = local.s3_origin_id
   }
 
