@@ -6,7 +6,7 @@ I just used a simple public s3 bucket to get the site up :)
 First Build Address:  http://rtg-takehome.com.s3-website-us-east-1.amazonaws.com
 
 
-I wanted to accomplish getting the website an offical domain name starting with www.rtg-takehome.com. 
+I do know that in a corporate enviroment an offical domain with specified access and certain certificates would be needed so I wanted to accomplish that by getting the website an offical-looking domain name starting with www.rtg-takehome.com. 
 I did make the neccssarry cloudfront and route53 code to do that, but then I realized I would need to purchase a domain
 to get the route53 addresses in aws to point there. So, thats where I stopped. In addition I would have added in a cert.tf file 
 to account for the fact that using the cloudfront default cert would bring up an unsecured message for users that visisted the 
