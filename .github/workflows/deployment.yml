@@ -42,3 +42,9 @@ jobs:
     - uses: chrislennon/action-aws-cli@v1.1
     - name: sync to s3
       run: aws s3 sync public s3://rtg-takehome.com
+    # Destroy AWS Resources
+    - name: 'Terraform Destroy'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.13
+        tf_actions_subcommand: 'destroy'
